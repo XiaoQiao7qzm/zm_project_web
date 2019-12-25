@@ -41,6 +41,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'hash',
+  base: '/zm_project',
   routes
 })
 

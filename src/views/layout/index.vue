@@ -5,7 +5,7 @@
         <Menu mode="horizontal" theme="dark" active-name="1">
           <div class="head" style="position: absolute;" @click="upfile()" title="点击修改头像">
             <img
-              :src="userInfo.head ? 'http://localhost:3000'+userInfo.head : require('../../assets/img/head.jpeg')"
+              :src="userInfo.head ?  headUrl + userInfo.head : require('../../assets/img/head.jpeg')"
               alt
             />
             <input
@@ -102,8 +102,9 @@ export default {
       topTitle: [],
       menuName: "1",
       headFile: true,
+      exitShow: false,
 
-      exitShow: false
+      headUrl: process.env.NODE_ENV === 'production' ? 'http://111.229.118.199:3000' : 'http://localhost:3000'
     };
   },
   components: {

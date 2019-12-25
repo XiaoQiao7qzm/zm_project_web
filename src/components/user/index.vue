@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       //svg
-      svgSrc: '/api/users/svgCaptcha?time=' + new Date().getTime(),
+      svgSrc: this.$req_url + '/users/svgCaptcha?time=' + new Date().getTime(),
       // form
       formInline: {
         username: "",
@@ -101,7 +101,7 @@ export default {
     },
     // 刷新验证码
     refreshImg(e) {
-      this.svgSrc = '/api/users/svgCaptcha?time=' + new Date().getTime()
+      this.svgSrc = this.$req_url + '/users/svgCaptcha?time=' + new Date().getTime()
     },
     handleSubmit(name) {
       // this.$refs[name].validate(valid => {
@@ -116,6 +116,17 @@ export default {
       if (this.formInline.password.trim() === "") {
         this.setAlertShow({msg: "请输入密码"});
         return;
+      }
+      // 注册时验证格式
+      if(this.type === 'register') {
+        if(!(/^[0-9a-zA-Z]{6,10}$/.test(this.formInline.username))) {
+          this.setAlertShow({msg: "用户名格式：6到10位 数字或字母（区分大小写）"});
+          return;
+        }
+        if(!(/^[A-Z]{1}[0-9a-zA-Z]{5,17}$/.test(this.formInline.password))) {
+          this.setAlertShow({msg: "密码格式：6到18位 数字或字母（区分大小写），第一位必须为大写字母"});
+          return;
+        }
       }
       if (this.formInline.authcode.trim() === "") {
         this.setAlertShow({msg: "请输入验证码"});

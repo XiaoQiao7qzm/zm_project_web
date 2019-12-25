@@ -1,7 +1,7 @@
 // vue webpack配置文件
 module.exports = {
   // 基本路径
-  publicPath: '/',
+  publicPath: '/zm_project',
   // 输出文件目录
   outputDir: 'dist',
   // eslint-loader 是否在保存的时候检查

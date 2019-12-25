@@ -19,7 +19,6 @@ instance.interceptors.response.use((response) => {
   // 如果token过期 直接返回登陆
   if(res.code === 100) {
     localStorage.removeItem('token')
-    localStorage.removeItem('user')
     router.push('/login')
     return {}
   }
